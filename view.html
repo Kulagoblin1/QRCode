@@ -25,11 +25,11 @@
 
     // Fetch the fabric data from Supabase using the fabric ID
     async function fetchFabricData() {
-      const res = await fetch(`https://<your-supabase-project-id>.supabase.co/rest/v1/fabric?id=eq.${fabricId}`, {
+      const res = await fetch(`https://pqpfwhjgqeajcekuulzd.supabase.co/rest/v1/fabric?id=eq.${fabricId}`, {
         method: "GET",
         headers: {
-          "apikey": "<your-api-key>",
-          "Authorization": `Bearer <your-api-key>`,
+          "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxcGZ3aGpncWVhamNla3V1bHpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2NDQ4MTYsImV4cCI6MjA5MTIyMDgxNn0.iv8Dre6jCfgMm5ZpF6lSYA_jWX7CUIUGkOZmkhk3_zI",
+          "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxcGZ3aGpncWVhamNla3V1bHpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2NDQ4MTYsImV4cCI6MjA5MTIyMDgxNn0.iv8Dre6jCfgMm5ZpF6lSYA_jWX7CUIUGkOZmkhk3_zI`,
           "Content-Type": "application/json"
         }
       });
