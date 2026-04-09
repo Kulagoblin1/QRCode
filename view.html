@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fabric Information</title>
+</head>
+<body>
+
+  <h2>Fabric Information</h2>
+
+  <div id="fabric-details">
+    <!-- Fabric details will be dynamically loaded here -->
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const fabricId = urlParams.get('id');
+
+    // Check if there's an id in the URL, if not, show an error
+    if (!fabricId) {
+      document.getElementById("fabric-details").innerText = "No fabric ID found in the URL.";
+      return;
+    }
+
+    // Fetch the fabric data from Supabase using the fabric ID
+    async function fetchFabricData() {
+      const res = await fetch(`https://<your-supabase-project-id>.supabase.co/rest/v1/fabric?id=eq.${fabricId}`, {
+        method: "GET",
+        headers: {
+          "apikey": "<your-api-key>",
+          "Authorization": `Bearer <your-api-key>`,
+          "Content-Type": "application/json"
+        }
+      });
+
+      const fabricData = await res.json();
+
+      if (fabricData.length === 0) {
+        document.getElementById("fabric-details").innerText = "No data found for this fabric.";
+        return;
+      }
+
+      // Display fabric details
+      const fabric = fabricData[0];
+      document.getElementById("fabric-details").innerHTML = `
+        <p><strong>Ref:</strong> ${fabric.ref}</p>
+        <p><strong>Batch:</strong> ${fabric.batch}</p>
+        <p><strong>Width:</strong> ${fabric.width}</p>
+        <p><strong>Color:</strong> ${fabric.color}</p>
+        <p><strong>Length:</strong> ${fabric.length}</p>
+        <p><strong>Roll:</strong> ${fabric.roll}</p>
+      `;
+    }
+
+    fetchFabricData();
+  </script>
+
+</body>
+</html>
